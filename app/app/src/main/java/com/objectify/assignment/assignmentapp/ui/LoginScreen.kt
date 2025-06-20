@@ -23,8 +23,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.objectify.assignment.assignmentapp.R
 import com.objectify.assignment.assignmentapp.ui.components.InputView
 import com.objectify.assignment.assignmentapp.ui.components.PasswordInput
 import com.objectify.assignment.assignmentapp.ui.theme.AppTheme
@@ -56,8 +58,8 @@ fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostSt
         InputView(
             value = username,
             onValueChange = { username = it },
-            label = "Username",
-            placeholder = "Enter your username",
+            label = stringResource(R.string.input_label_username),
+            placeholder = stringResource(R.string.input_placeholder_username),
             modifier = Modifier.fillMaxWidth(),
             showClearIcon = true
         )
@@ -77,12 +79,15 @@ fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostSt
             enabled = username.isNotBlank() && passwordValid,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Login")
+            Text(stringResource(R.string.login_button))
         }
     }
-    if (showSnackbar) LaunchedEffect(Unit) {
-        snackbarHostState.showSnackbar("Username: $username\nPassword: $password")
-        showSnackbar = false
+    if (showSnackbar) {
+        val message = stringResource(R.string.login_snackbar, username, password)
+        LaunchedEffect(Unit) {
+            snackbarHostState.showSnackbar(message)
+            showSnackbar = false
+        }
     }
 }
 

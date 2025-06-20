@@ -16,8 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.objectify.assignment.assignmentapp.R
 import com.objectify.assignment.assignmentapp.ui.theme.ContentOnNeutralMedium
 import com.objectify.assignment.assignmentapp.ui.theme.LabelS
 import com.objectify.assignment.assignmentapp.ui.theme.SpacingXS
@@ -32,11 +34,12 @@ private data class PasswordRequirement(val label: String, val isMet: (String) ->
  * - At least one digit
  * - At least one special character (? = # / %)
  */
-private val passwordRequirements = listOf(
-    PasswordRequirement("Minimálne 8 znakov") { it.length >= 8 },
-    PasswordRequirement("Aspoň jedno veľké písmeno") { it.any { c -> c.isUpperCase() } },
-    PasswordRequirement("Aspoň jedno číslo") { it.any { c -> c.isDigit() } },
-    PasswordRequirement("Aspoň jeden špeciálny znak (? = # / %)") { it.any { c -> c in "?=#/%" } }
+@Composable
+private fun passwordRequirements() = listOf(
+    PasswordRequirement(stringResource(R.string.password_requirement_length)) { it.length >= 8 },
+    PasswordRequirement(stringResource(R.string.password_requirement_upper)) { it.any { c -> c.isUpperCase() } },
+    PasswordRequirement(stringResource(R.string.password_requirement_digit)) { it.any { c -> c.isDigit() } },
+    PasswordRequirement(stringResource(R.string.password_requirement_special)) { it.any { c -> c in "?=#/%" } }
 )
 
 /**
@@ -56,24 +59,25 @@ fun PasswordInput(
     enabled: Boolean = true,
     showClearIcon: Boolean = false
 ) {
-    val requirementsStatus = passwordRequirements.map { it.isMet(password) }
+    val requirementsStatus = passwordRequirements().map { it.isMet(password) }
     val allValid = requirementsStatus.all { it }
 
     Column(modifier = modifier) {
         InputView(
             value = password,
             onValueChange = onPasswordChange,
-            label = "Heslo",
-            placeholder = "Zadajte heslo",
+            label = stringResource(R.string.password_label),
+            placeholder = stringResource(R.string.password_placeholder),
             isError = !allValid && password.isNotEmpty(),
-            errorText = if (!allValid && password.isNotEmpty()) "Heslo nespĺňa požiadavky" else null,
+            errorText = if (!allValid && password.isNotEmpty())
+                stringResource(R.string.password_error) else null,
             enabled = enabled,
             visualTransformation = PasswordVisualTransformation(),
             showClearIcon = showClearIcon
         )
         Spacer(modifier = Modifier.height(SpacingXS))
         Column {
-            passwordRequirements.forEachIndexed { i, req ->
+            passwordRequirements().forEachIndexed { i, req ->
                 val met = requirementsStatus[i]
                 RequirementRow(label = req.label, met = met)
             }
