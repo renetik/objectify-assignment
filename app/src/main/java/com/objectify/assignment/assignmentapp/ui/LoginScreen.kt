@@ -1,6 +1,6 @@
 package com.objectify.assignment.assignmentapp.ui
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -32,54 +34,56 @@ import com.objectify.assignment.assignmentapp.ui.components.PasswordInput
 import com.objectify.assignment.assignmentapp.ui.theme.AppTheme
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostState) {
+fun LoginScreen(
+    modifier: Modifier = Modifier,
+    snackbarHostState: SnackbarHostState
+) {
     val focusManager = LocalFocusManager.current
     var username by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var showSnackbar by rememberSaveable { mutableStateOf(false) }
-
-    val scrollState = rememberScrollState()
-    val passwordValid = listOf(
-        password.length >= 8,
-        password.any { it.isUpperCase() },
-        password.any { it.isDigit() },
-        password.any { it in "?=#/%" }
-    ).all { it }
-
-    Column(
+    val passwordValid = password.isPasswordValid()
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
-            .imePadding()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(24.dp)
     ) {
-        InputView(
-            value = username,
-            onValueChange = { username = it },
-            label = stringResource(R.string.input_label_username),
-            placeholder = stringResource(R.string.input_placeholder_username),
-            modifier = Modifier.fillMaxWidth(),
-            showClearIcon = true
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        PasswordInput(
-            password = password,
-            onPasswordChange = { password = it },
-            modifier = Modifier.fillMaxWidth(),
-            showClearIcon = true
-        )
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(
-            onClick = {
-                focusManager.clearFocus(force = true)
-                showSnackbar = true
-            },
-            enabled = username.isNotBlank() && passwordValid,
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .widthIn(max = 400.dp)
+                .wrapContentWidth()
+                .verticalScroll(rememberScrollState())
+                .imePadding()
+                .padding(vertical = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(stringResource(R.string.login_button))
+            InputView(
+                value = username,
+                onValueChange = { username = it },
+                label = stringResource(R.string.input_label_username),
+                placeholder = stringResource(R.string.input_placeholder_username),
+                modifier = Modifier.fillMaxWidth(),
+                showClearIcon = true
+            )
+            Spacer(Modifier.height(16.dp))
+            PasswordInput(
+                password = password,
+                onPasswordChange = { password = it },
+                modifier = Modifier.fillMaxWidth(),
+                showClearIcon = true
+            )
+            Spacer(Modifier.height(24.dp))
+            Button(
+                onClick = {
+                    focusManager.clearFocus(true)
+                    showSnackbar = true
+                },
+                enabled = username.isNotBlank() && passwordValid,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(stringResource(R.string.login_button))
+            }
         }
     }
     if (showSnackbar) {
@@ -90,6 +94,10 @@ fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostSt
         }
     }
 }
+
+private fun String.isPasswordValid(): Boolean =
+    listOf(length >= 8, any { it.isUpperCase() },
+        any { it.isDigit() }, any { it in "?=#/%" }).all { it }
 
 @Preview(showBackground = true)
 @Composable
