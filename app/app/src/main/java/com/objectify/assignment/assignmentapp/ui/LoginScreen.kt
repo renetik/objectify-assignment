@@ -58,13 +58,15 @@ fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostSt
             onValueChange = { username = it },
             label = "Username",
             placeholder = "Enter your username",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            showClearIcon = true
         )
         Spacer(modifier = Modifier.height(16.dp))
         PasswordInput(
             password = password,
             onPasswordChange = { password = it },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            showClearIcon = true
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(

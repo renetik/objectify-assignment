@@ -25,6 +25,8 @@ import com.objectify.assignment.assignmentapp.ui.theme.RadiusInput
 import com.objectify.assignment.assignmentapp.ui.theme.SurfaceBrand
 import com.objectify.assignment.assignmentapp.ui.theme.SurfaceDanger
 import com.objectify.assignment.assignmentapp.ui.theme.SurfaceXHigh
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 
 @Composable
 fun InputView(
@@ -40,7 +42,8 @@ fun InputView(
     trailingIcon: @Composable (() -> Unit)? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    helperText: String? = null
+    helperText: String? = null,
+    showClearIcon: Boolean = false
 ) {
     Column(modifier = modifier) {
         OutlinedTextField(
@@ -58,7 +61,16 @@ fun InputView(
             isError = isError,
             enabled = enabled,
             leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
+            trailingIcon = if (showClearIcon && value.isNotEmpty()) {
+                {
+                    androidx.compose.material3.IconButton(onClick = { onValueChange("") }) {
+                        androidx.compose.material3.Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = "Clear input"
+                        )
+                    }
+                }
+            } else trailingIcon,
             keyboardOptions = keyboardOptions,
             visualTransformation = visualTransformation,
             singleLine = true,
