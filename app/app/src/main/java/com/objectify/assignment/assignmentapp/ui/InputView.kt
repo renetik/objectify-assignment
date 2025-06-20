@@ -3,17 +3,19 @@ package com.objectify.assignment.assignmentapp.ui
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputView(
     value: String,
@@ -45,21 +47,17 @@ fun InputView(
             visualTransformation = visualTransformation,
             singleLine = true
         )
-        if (isError && errorText != null) {
-            Text(
-                text = errorText,
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier
-            )
-        } else if (helperText != null) {
-            Text(
-                text = helperText,
-                color = Color.Gray,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier
-            )
-        }
+        if (isError && errorText != null) Text(
+            text = errorText,
+            color = MaterialTheme.colorScheme.error,
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier
+        ) else if (helperText != null) Text(
+            text = helperText,
+            color = Color.Gray,
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier
+        )
     }
 }
 
