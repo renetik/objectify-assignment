@@ -28,6 +28,24 @@ import com.objectify.assignment.assignmentapp.ui.theme.SurfaceXHigh
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 
+/**
+ * A customizable input field with optional label, placeholder, error, helper text, icons, and clear button.
+ *
+ * @param value The current text to display inside the input field.
+ * @param onValueChange Callback when the input text changes.
+ * @param modifier Modifier to be applied to the input field.
+ * @param label Optional label to display above the input field.
+ * @param placeholder Optional placeholder text to display when the input is empty.
+ * @param isError Whether the input is in an error state.
+ * @param errorText Optional error message to display below the input field.
+ * @param enabled Whether the input field is enabled for user interaction.
+ * @param leadingIcon Optional leading icon to display inside the input field.
+ * @param trailingIcon Optional trailing icon to display inside the input field (overridden by clear icon if shown).
+ * @param keyboardOptions Keyboard options for the input field.
+ * @param visualTransformation Visual transformation for the input (e.g., password masking).
+ * @param helperText Optional helper text to display below the input field.
+ * @param showClearIcon If true, shows a clear (close) icon when the input is not empty.
+ */
 @Composable
 fun InputView(
     value: String,
@@ -108,6 +126,9 @@ fun InputView(
     }
 }
 
+/**
+ * Preview of InputView in normal state.
+ */
 @Composable
 @Preview(showBackground = true, name = "InputView - Normal")
 fun PreviewInputViewNormal() {
@@ -121,6 +142,9 @@ fun PreviewInputViewNormal() {
     )
 }
 
+/**
+ * Preview of InputView in error state.
+ */
 @Composable
 @Preview(showBackground = true, name = "InputView - Error")
 fun PreviewInputViewError() {
