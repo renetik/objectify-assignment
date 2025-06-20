@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
@@ -15,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.objectify.assignment.assignmentapp.ui.theme.*
 
 private data class PasswordRequirement(val label: String, val isMet: (String) -> Boolean)
 
@@ -47,7 +46,7 @@ fun PasswordInput(
             enabled = enabled,
             visualTransformation = PasswordVisualTransformation()
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(SpacingXS))
         Column {
             passwordRequirements.forEachIndexed { i, req ->
                 val met = requirementsStatus[i]
@@ -59,7 +58,7 @@ fun PasswordInput(
 
 @Composable
 private fun RequirementRow(label: String, met: Boolean) {
-    val color = if (met) Color(0xFF4CAF50) else Color.Gray
+    val color = if (met) SurfaceBrand else ContentOnNeutralMedium
     val icon = if (met) Icons.Filled.CheckCircle else Icons.Filled.Error
     RowWithIcon(icon = icon, color = color, label = label)
 }
@@ -68,8 +67,8 @@ private fun RequirementRow(label: String, met: Boolean) {
 private fun RowWithIcon(icon: androidx.compose.ui.graphics.vector.ImageVector, color: Color, label: String) {
     androidx.compose.foundation.layout.Row {
         Icon(imageVector = icon, contentDescription = null, tint = color)
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(text = label, color = color, style = MaterialTheme.typography.bodySmall)
+        Spacer(modifier = Modifier.width(SpacingXS))
+        Text(text = label, color = color, style = LabelS)
     }
 }
 

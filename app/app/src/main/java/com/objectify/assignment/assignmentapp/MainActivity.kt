@@ -12,14 +12,14 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.objectify.assignment.assignmentapp.ui.LoginScreen
-import com.objectify.assignment.assignmentapp.ui.theme.AssignmentAppTheme
+import com.objectify.assignment.assignmentapp.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AssignmentAppTheme {
+            AppTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),

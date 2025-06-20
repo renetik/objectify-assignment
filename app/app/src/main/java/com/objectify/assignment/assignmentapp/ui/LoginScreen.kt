@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.objectify.assignment.assignmentapp.ui.components.InputView
 import com.objectify.assignment.assignmentapp.ui.components.PasswordInput
-import com.objectify.assignment.assignmentapp.ui.theme.AssignmentAppTheme
+import com.objectify.assignment.assignmentapp.ui.theme.AppTheme
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostState) {
@@ -68,7 +68,7 @@ fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostSt
 
 @Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() = AssignmentAppTheme {
+fun LoginScreenPreview() = AppTheme {
     val snackbarHostState = remember { SnackbarHostState() }
     LoginScreen(snackbarHostState = snackbarHostState)
 }

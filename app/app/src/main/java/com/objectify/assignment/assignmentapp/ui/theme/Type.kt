@@ -6,11 +6,14 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.em
+import com.objectify.assignment.assignmentapp.R
 
-// Make sure to add Inter font to your project (res/font/inter_*.ttf)
-val Inter = FontFamily.Default // Replace with actual Inter font if available
+val Inter = FontFamily(
+    Font(R.font.inter_regular, FontWeight.Normal),
+    Font(R.font.inter_medium, FontWeight.Medium),
+    Font(R.font.inter_semibold, FontWeight.SemiBold),
+    Font(R.font.inter_bold, FontWeight.Bold)
+)
 
 val LabelM = TextStyle(
     fontFamily = Inter,
@@ -22,7 +25,7 @@ val LabelM = TextStyle(
 
 val LabelS = TextStyle(
     fontFamily = Inter,
-    fontWeight = FontWeight.W600, // 550 is not standard, use closest
+    fontWeight = FontWeight.SemiBold,
     fontSize = 14.sp,
     lineHeight = 17.sp,
     letterSpacing = 0.16.sp
@@ -41,31 +44,4 @@ val AppTypography = Typography(
     bodyMedium = BodyM,
     labelLarge = LabelM,
     labelMedium = LabelS
-)
-
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
 )
