@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Prihlasovacia aplikácia</string>
+    <string name="input_label_username">Používateľské meno</string>
+    <string name="input_placeholder_username">Zadajte používateľské meno</string>
+    <string name="input_helper_text">Toto je pomocný text</string>
+    <string name="input_label_email">Email</string>
+    <string name="input_placeholder_email">Zadajte svoj email</string>
+    <string name="input_error_email">Neplatná emailová adresa</string>
+    <string name="input_clear_content_description">Vymazať vstup</string>
+    <string name="password_label">Heslo</string>
+    <string name="password_placeholder">Zadajte heslo</string>
+    <string name="password_error">Heslo nespĺňa požiadavky</string>
+    <string name="password_requirement_length">Minimálne 8 znakov</string>
+    <string name="password_requirement_upper">Aspoň jedno veľké písmeno</string>
+    <string name="password_requirement_digit">Aspoň jedno číslo</string>
+    <string name="password_requirement_special">Aspoň jeden špeciálny znak (? = # / %)</string>
+    <string name="login_button">Prihlásiť sa</string>
+    <string name="login_snackbar">Používateľ: %1$s\nHeslo: %2$s</string>
+</resources> 

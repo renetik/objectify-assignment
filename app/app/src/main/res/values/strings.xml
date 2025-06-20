@@ -7,13 +7,13 @@
     <string name="input_placeholder_email">Enter your email</string>
     <string name="input_error_email">Invalid email address</string>
     <string name="input_clear_content_description">Clear input</string>
-    <string name="password_label">Heslo</string>
-    <string name="password_placeholder">Zadajte heslo</string>
-    <string name="password_error">Heslo nespĺňa požiadavky</string>
-    <string name="password_requirement_length">Minimálne 8 znakov</string>
-    <string name="password_requirement_upper">Aspoň jedno veľké písmeno</string>
-    <string name="password_requirement_digit">Aspoň jedno číslo</string>
-    <string name="password_requirement_special">Aspoň jeden špeciálny znak (? = # / %)</string>
+    <string name="password_label">Password</string>
+    <string name="password_placeholder">Enter your password</string>
+    <string name="password_error">Password does not meet requirements</string>
+    <string name="password_requirement_length">At least 8 characters</string>
+    <string name="password_requirement_upper">At least one uppercase letter</string>
+    <string name="password_requirement_digit">At least one digit</string>
+    <string name="password_requirement_special">At least one special character (? = # / %)</string>
     <string name="login_button">Login</string>
     <string name="login_snackbar">Username: %1$s\nPassword: %2$s</string>
 </resources>
