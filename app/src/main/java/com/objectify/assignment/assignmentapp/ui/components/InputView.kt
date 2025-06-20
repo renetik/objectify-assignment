@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -42,6 +43,7 @@ import androidx.compose.material.icons.filled.Close
  * @param leadingIcon Optional leading icon to display inside the input field.
  * @param trailingIcon Optional trailing icon to display inside the input field (overridden by clear icon if shown).
  * @param keyboardOptions Keyboard options for the input field.
+ * @param keyboardActions Keyboard actions for the input field.
  * @param visualTransformation Visual transformation for the input (e.g., password masking).
  * @param helperText Optional helper text to display below the input field.
  * @param showClearIcon If true, shows a clear (close) icon when the input is not empty.
@@ -59,6 +61,7 @@ fun InputView(
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     helperText: String? = null,
     showClearIcon: Boolean = false
@@ -90,6 +93,7 @@ fun InputView(
                 }
             } else trailingIcon,
             keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
             visualTransformation = visualTransformation,
             singleLine = true,
             shape = RoundedCornerShape(RadiusInput),

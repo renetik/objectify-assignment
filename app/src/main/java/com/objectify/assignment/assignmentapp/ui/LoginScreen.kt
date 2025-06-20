@@ -32,6 +32,11 @@ import com.objectify.assignment.assignmentapp.R
 import com.objectify.assignment.assignmentapp.ui.components.InputView
 import com.objectify.assignment.assignmentapp.ui.components.PasswordInput
 import com.objectify.assignment.assignmentapp.ui.theme.AppTheme
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
 
 @Composable
 fun LoginScreen(
@@ -43,6 +48,7 @@ fun LoginScreen(
     var password by rememberSaveable { mutableStateOf("") }
     var showSnackbar by rememberSaveable { mutableStateOf(false) }
     val passwordValid = password.isPasswordValid()
+    val passwordFocusRequester = remember { FocusRequester() }
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -64,13 +70,15 @@ fun LoginScreen(
                 label = stringResource(R.string.input_label_username),
                 placeholder = stringResource(R.string.input_placeholder_username),
                 modifier = Modifier.fillMaxWidth(),
-                showClearIcon = true
+                showClearIcon = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                keyboardActions = KeyboardActions(onNext = { passwordFocusRequester.requestFocus() })
             )
             Spacer(Modifier.height(16.dp))
             PasswordInput(
                 password = password,
                 onPasswordChange = { password = it },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().focusRequester(passwordFocusRequester),
                 showClearIcon = true
             )
             Spacer(Modifier.height(24.dp))
