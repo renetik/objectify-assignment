@@ -1,4 +1,4 @@
-package com.objectify.assignment.assignmentapp.ui
+package com.objectify.assignment.assignmentapp.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

@@ -21,6 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.objectify.assignment.assignmentapp.ui.components.InputView
+import com.objectify.assignment.assignmentapp.ui.components.PasswordInput
 import com.objectify.assignment.assignmentapp.ui.theme.AssignmentAppTheme
 
 @Composable
