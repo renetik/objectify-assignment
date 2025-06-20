@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,9 +25,9 @@ import com.objectify.assignment.assignmentapp.ui.theme.AssignmentAppTheme
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, snackbarHostState: SnackbarHostState) {
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var showSnackbar by remember { mutableStateOf(false) }
+    var username by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var showSnackbar by rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = modifier
